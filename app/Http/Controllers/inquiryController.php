@@ -9,6 +9,8 @@ use App\Models\TicketReply;
 use Carbon\Carbon;
 use Egulias\EmailValidator\EmailValidator;  // email avalidation library
 use Egulias\EmailValidator\Validation\RFCValidation; 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InquiryReplyMail;
 
 class inquiryController extends Controller
 {
@@ -38,6 +40,7 @@ class inquiryController extends Controller
         $inquiry->email = $request->email;
         $inquiry->phone = $request->phone;
         $inquiry->subject = $request->subject;
+        $inquiry->ticketType = "Inquiry Message";
         $inquiry->ticketText = $request->message;
         $inquiry->ticketStatus = "New";
         $inquiry->created_at = Carbon::now();
@@ -103,4 +106,20 @@ class inquiryController extends Controller
         // Redirect back to the inquiry list with a success message
         return redirect()->route('admin.inquiry.index')->with('success', 'Inquiry deleted successfully.');
     }
+
+    public function reply(Request $request, $ticketID)
+    {
+        $inquiry = Tickets::findOrFail($ticketID);
+
+        // Validate input
+        $request->validate([
+            'reply' => 'required|string',
+        ]);
+
+        // Send email
+        Mail::to($inquiry->email)->send(new InquiryReplyMail($inquiry, $request->reply));
+
+        // Redirect back with success message
+        return redirect()->back()->with('success', 'Reply sent successfully!');
+    } 
 }

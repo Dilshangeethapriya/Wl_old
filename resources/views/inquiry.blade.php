@@ -4,176 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - WOODLAK</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9fafb;
-            margin: 0;
-            padding: 0;
-        }
-
-        .heading {
-            padding: 30px;
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #1f2937; /* Tailwind's gray-800 */
-        }
-
-        .contact-container {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb; /* Tailwind's gray-200 */
-            border-radius: 0.5rem; /* Tailwind's rounded-lg */
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Tailwind's shadow-sm */
-        }
-
-        .tabs {
-            flex-basis: 20%;
-        }
-
-        .tabs button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #f3f4f6; /* Tailwind's gray-100 */
-            border: 1px solid #e5e7eb; /* Tailwind's gray-200 */
-            border-radius: 0.375rem; /* Tailwind's rounded-md */
-            cursor: pointer;
-            font-size: 1rem;
-            text-align: left;
-            color: #1f2937; /* Tailwind's gray-800 */
-            transition: background-color 0.2s;
-        }
-
-        .tabs button:hover {
-            background-color: #e5e7eb; /* Tailwind's gray-200 */
-        }
-
-        .content {
-            flex-basis: 50%;
-            padding: 20px;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .contact-info {
-            flex-basis: 25%;
-            padding: 20px;
-            background-color: #1f2937; /* Tailwind's gray-800 */
-            color: #ffffff;
-            border-radius: 0.5rem; /* Tailwind's rounded-lg */
-        }
-
-        .contact-info p {
-            margin: 10px 0;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-top: 10px;
-            font-weight: 600;
-            color: #374151; /* Tailwind's gray-700 */
-        }
-
-        input, textarea {
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #e5e7eb; /* Tailwind's gray-200 */
-            border-radius: 0.375rem; /* Tailwind's rounded-md */
-        }
-
-        button[type="submit"] {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #2563eb; /* Tailwind's blue-600 */
-            color: #ffffff;
-            border: none;
-            border-radius: 0.375rem; /* Tailwind's rounded-md */
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #1d4ed8; /* Tailwind's blue-700 */
-        }
-
-        .alert {
-            padding: 20px;
-            color: #ffffff;
-            margin-bottom: 15px;
-            margin-top: 15px;
-            border-radius: 0.375rem; /* Tailwind's rounded-md */
-            position: relative;
-        }
-
-        .closebtn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 22px;
-            line-height: 20px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .closebtn:hover {
-            color: #000000;
-        }
-
-        .alert-success {
-            background-color: #10b981; /* Tailwind's green-500 */
-        }
-
-        .alert-danger {
-            background-color: #ef4444; /* Tailwind's red-500 */
-        }
-    </style>
+   
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <h1 class="heading">Contact Us</h1>
-    <div class="contact-container">
-        <div class="tabs">
-            <button onclick="showContent('inquiry')">Inquiry</button>
-            <button onclick="showContent('callback')">Call back</button>
-            <button onclick="showContent('ipCall')">IP call</button>
+<body class="font-sans bg-gray-100 m-0 p-0">
+    <h1 class="text-2xl font-semibold text-center text-gray-800 p-8">Contact Us</h1>
+
+    <hr>
+
+    <div class="flex justify-between p-5 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div class="flex-1 md:flex-none md:w-1/5">
+            <div class="flex flex-col">
+                <button class="block w-full p-2 mb-2 bg-gray-100 border border-gray-200 rounded-md text-left text-gray-800 hover:bg-gray-200" onclick="showContent('inquiry')">Inquiry</button>
+                <button class="block w-full p-2 mb-2 bg-gray-100 border border-gray-200 rounded-md text-left text-gray-800 hover:bg-gray-200" onclick="showContent('callback')">Call back</button>
+                <button class="block w-full p-2 mb-2 bg-gray-100 border border-gray-200 rounded-md text-left text-gray-800 hover:bg-gray-200" onclick="showContent('ipCall')">IP call</button>
+            </div>
         </div>
-        <div class="content">
-            <div id="inquiry" class="tab-content active">
-                <h2>Send your inquiry</h2>
-                <form method="post" action="{{ route('addInquiry') }}">
+
+        <div class="flex-1 md:flex-none md:w-1/2 p-5">
+            <div id="inquiry" class="block">
+                <h2 class="text-xl font-semibold mb-4">Send your inquiry</h2>
+                <form method="post" action="{{ route('addInquiry') }}" class="flex flex-col">
                     @csrf
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}">
-                    <label for="phone">Phone</label>
-                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" value="{{ old('email') }}">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" value="{{ old('subject') }}">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message">{{ old('message') }}</textarea>
-                    <button type="submit">Send</button>
+                    <label for="name" class="mt-2 font-semibold text-gray-700">Name</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" class="p-2 mt-1 border border-gray-200 rounded-md">
+
+                    <label for="phone" class="mt-2 font-semibold text-gray-700">Phone</label>
+                    <input type="text" id="phone" name="phone" value="{{ old('phone') }}" class="p-2 mt-1 border border-gray-200 rounded-md">
+
+                    <label for="email" class="mt-2 font-semibold text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" class="p-2 mt-1 border border-gray-200 rounded-md">
+
+                    <label for="subject" class="mt-2 font-semibold text-gray-700">Subject</label>
+                    <input type="text" id="subject" name="subject" value="{{ old('subject') }}" class="p-2 mt-1 border border-gray-200 rounded-md">
+
+                    <label for="message" class="mt-2 font-semibold text-gray-700">Message</label>
+                    <textarea id="message" name="message" class="p-2 mt-1 border border-gray-200 rounded-md">{{ old('message') }}</textarea>
+
+                    <button type="submit" class="mt-5 p-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Send</button>
                 </form>
-                <!-- display validation errors -->
+                
                 @if($errors->any())
-                <div class="alert alert-danger">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div class="alert alert-danger bg-red-500 text-white p-4 rounded-md mt-4">
+                    <span class="closebtn absolute top-2 right-2 font-bold text-lg cursor-pointer hover:text-black" onclick="this.parentElement.style.display='none';">&times;</span>
                     <ul>
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -181,28 +54,31 @@
                     </ul>
                 </div>
                 @endif
-                <!-- display submit success message -->
+
                 @if(session('success'))
-                <div class="alert alert-success">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <div class="alert alert-success bg-green-500 text-white p-4 rounded-md mt-4">
+                    <span class="closebtn absolute top-2 right-2 font-bold text-lg cursor-pointer hover:text-black" onclick="this.parentElement.style.display='none';">&times;</span>
                     {{ session('success') }}
                 </div>
                 @endif
             </div>
-            <div id="callback" class="tab-content">
-                <h2>Request a Callback</h2>
+
+            <div id="callback" class="hidden">
+                <h2 class="text-xl font-semibold mb-4">Request a Callback</h2>
                 <!-- Callback-specific content -->
             </div>
-            <div id="ipCall" class="tab-content">
-                <h2>Request an IP Call</h2>
+
+            <div id="ipCall" class="hidden">
+                <h2 class="text-xl font-semibold mb-4">Request an IP Call</h2>
                 <!-- IP Call-specific content -->
             </div>
         </div>
-        <div class="contact-info">
-            <h3>Reach Us</h3>
-            <p>Email: woodlak@gmail.com</p>
-            <p>Phone: +94 77 000 0000</p>
-            <p>Address: NO50, Colombo</p>
+
+        <div class="flex-1 md:flex-none md:w-1/4 p-5 bg-gray-800 text-white rounded-lg">
+            <h3 class="text-lg font-semibold">Reach Us</h3>
+            <p class="mt-2">Email: woodlak@gmail.com</p>
+            <p class="mt-2">Phone: +94 77 000 0000</p>
+            <p class="mt-2">Address: NO50, Colombo</p>
         </div>
     </div>
   
@@ -211,13 +87,12 @@
             var i;
             var x = document.getElementsByClassName("tab-content");
             for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
+                x[i].classList.add("hidden");
             }
-            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.remove("hidden");
         }
 
-        // By default, show the first tab
-        document.getElementById("inquiry").style.display = "block";
+        document.getElementById("inquiry").classList.remove("hidden");
     </script>
     <script type="text/javascript">
         window.$crisp = [];

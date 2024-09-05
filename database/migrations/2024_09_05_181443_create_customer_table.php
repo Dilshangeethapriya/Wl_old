@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('customer', function (Blueprint $table) {
-            $table->customerID();
+            $table->id('customerID'); // Use 'id' for auto-incrementing primary key
             $table->string('name');
             $table->string('email')->unique()->nullable();
             $table->string('contact', 20);
@@ -28,10 +25,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('customer');
     }

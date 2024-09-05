@@ -35,3 +35,5 @@ Route::get('/admin/inquiry/{ticketID}', [InquiryController::class, 'viewInquiry'
 Route::put('/admin/inquiry/{ticketID}/status', [inquiryController::class, 'updateStatus'])->name('admin.inquiry.updateStatus');
 
 Route::delete('/admin/inquiry/{ticketID}', [inquiryController::class, 'deleteInquiry'])->name('admin.inquiry.delete');
+
+Route::post('/admin/inquiries/{ticketID}/reply', [InquiryController::class, 'reply'])->name('admin.inquiry.reply');

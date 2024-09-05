@@ -4,165 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - View Inquiries</title>
-   <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .admin-container {
-            width: 80%;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .inquiry-list {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .list-header {
-          display: flex;
-            justify-content: space-between;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
-          background-color:  #c5ffec;
-        }
-
-        .inquiry-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
-        }
-
-        .inquiry-item:hover {
-            background-color: #f1f1f1;
-        }
-
-        .inquiry-item div {
-            flex: 1;
-            text-align: left;
-            padding: 0 10px;
-        }
-
-        .inquiry-item div:nth-child(4) {
-            text-align: right;
-        }
-
-        a {
-           text-decoration: none;
-          color:unset;
-              }
-
-
-
-        .badge.new {
-        color: #007bff; /* Blue for 'New' */
-     }
-
-      .badge.in-progress {
-       color: #ffc107; /* Yellow for 'In Progress' */
-     }
-
-      .badge.closed {
-       color: #28a745; /* Green for 'Closed' */
-      }
-
-      .alert {
-  padding: 20px;
-  color: white;
-  margin-bottom: 15px;
-  margin-top: 15px;
- }
-
-
-   .closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-   }
-
-
-   .closebtn:hover {
-  color: black;
-   }
-
-      .alert-success{
-        background-color: #28a745;
-      }
-      
-      .alert-danger{
-        background-color: #dc143c;
-      }
-
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <div class="admin-container">
-        <h1>Customer Inquiries</h1>
-        @if (session('success'))
-        <div class="alert alert-success">
-               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                      {{ session('success') }}
-              </div>
-        <br>
+<body class="font-sans text-gray-900 antialiased bg-gray-100 p-5">
+  <h1 class="font-bold cursor-pointer  text-3xl text-center">Inquiry Managment</h1>
 
-    @endif
-
-    @if (session('error'))
-    <div class="alert alert-danger">
-               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-               {{ session('error') }}
-              </div>
-        <br>
-        
-    @endif
-        <div class="inquiry-list">
-        <div class="list-header" >
-                <div><strong>Name</strong></div>
-                <div><strong>Subject</strong></div>
-                <div><strong>Date and Time</strong></div>
-                <div><strong>Status</strong></div>
-            </div>
-            @foreach($inquiries as $inquiry)
-            <a href="{{ route('admin.inquiry.viewInquiry', $inquiry->ticketID) }}">
-            <div class="inquiry-item" >
-                <div>{{ $inquiry->name }}</div>
-                <div>{{ $inquiry->subject }}</div>
-                <div>{{ $inquiry->created_at }}</div>
-                <div><span class="badge 
-                                @if($inquiry->ticketStatus == 'New') new 
-                                @elseif($inquiry->ticketStatus == 'In Progress') in-progress 
-                                @elseif($inquiry->ticketStatus == 'Closed') closed 
-                                @endif">
-                                {{$inquiry->ticketStatus}}
-                            </span></div>
-            </div>
-            </a>
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <h1 class="text-center text-2xl font-semibold mb-5 text-gray-700">Customer Inquiries</h1>
             
-            @endforeach
-        </div>
-        {{$inquiries->links('vendor/pagination/simple-default')}}
-    </div>
+            @if (session('success'))
+            <div class="bg-green-500 text-white p-4 rounded-md mb-4">
+                <span class="font-bold cursor-pointer float-right text-xl leading-none" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ session('success') }}
+            </div>
+            @endif
 
-    
+            @if (session('error'))
+            <div class="bg-red-500 text-white p-4 rounded-md mb-4">
+                <span class="font-bold cursor-pointer float-right text-xl leading-none" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ session('error') }}
+            </div>
+            @endif
+
+            <div class="flex flex-col space-y-3">
+                <div class="flex justify-between bg-gray-200 p-3 rounded-t-lg text-gray-600">
+                    <div><strong>Name</strong></div>
+                    <div><strong>Subject</strong></div>
+                    <div><strong>Date and Time</strong></div>
+                    <div><strong>Status</strong></div>
+                </div>
+                @foreach($inquiries as $inquiry)
+                <a href="{{ route('admin.inquiry.viewInquiry', $inquiry->ticketID) }}" class="hover:bg-gray-50">
+                    <div class="flex justify-between p-3 border-b border-gray-300 text-gray-700">
+                        <div>{{ $inquiry->name }}</div>
+                        <div>{{ $inquiry->subject }}</div>
+                        <div>{{ $inquiry->created_at }}</div>
+                        <div class="font-semibold
+                            @if($inquiry->ticketStatus == 'New') text-blue-600 
+                            @elseif($inquiry->ticketStatus == 'In Progress') text-yellow-500 
+                            @elseif($inquiry->ticketStatus == 'Closed') text-green-600 
+                            @endif">
+                            {{$inquiry->ticketStatus}}
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+
+            <div class="mt-5">
+            {{ $inquiries->links() }}
+            </div>
+        </div>
+    </div>
 </body>
 </html>
