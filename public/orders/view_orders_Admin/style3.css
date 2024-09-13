@@ -78,11 +78,11 @@ main.table {
     transition: .2s;
 }
 
-.table__header .input-group:hover {
+/* .table__header .input-group:hover {
     width: 45%;
     background-color: #fff8;
     box-shadow: 0 .1rem .4rem #0002;
-}
+} */
 
 .table__header .input-group img {
     width: 1.2rem;

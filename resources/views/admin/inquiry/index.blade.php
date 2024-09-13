@@ -17,26 +17,15 @@
       style="background-image: url('{{ asset('storage/bg1.jpg') }}'); background-size: cover;">
     <x-admin-navbar/>
 
-    <h1 class="font-bold cursor-pointer text-3xl text-center mt-8">Inquiry Management</h1>
+    <h1 class="font-bold cursor-pointer text-3xl text-center my-8">Inquiry Management</h1>
+
 
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-transparent">
         <div class="w-full sm:max-w-4xl mt-6 px-6 py-4 bg-translucent shadow-md overflow-hidden sm:rounded-lg">
             <!-- Inquiries Section -->
             <h2 class="text-center text-2xl font-semibold mb-5 text-gray-700">Customer Inquiries</h2>
 
-            @if (session('success'))
-            <div class="bg-green-500 text-white p-4 rounded-md mb-4">
-                <span class="font-bold cursor-pointer float-right text-xl leading-none" onclick="this.parentElement.style.display='none';">&times;</span>
-                {{ session('success') }}
-            </div>
-            @endif
-
-            @if (session('error'))
-            <div class="bg-red-500 text-white p-4 rounded-md mb-4">
-                <span class="font-bold cursor-pointer float-right text-xl leading-none" onclick="this.parentElement.style.display='none';">&times;</span>
-                {{ session('error') }}
-            </div>
-            @endif
+         
 
             <div class="flex flex-col space-y-3">
                 <div class="grid grid-cols-4 gap-4 bg-gray-200 p-3 rounded-t-lg text-gray-600">
@@ -77,7 +66,7 @@
                     <div class="text-left"><strong>Name</strong></div>
                     <div class="text-left"><strong>Phone</strong></div>
                     <div class="text-left"><strong>Time Range</strong></div>
-                    <div class="text-left"><strong>Date and Time</strong></div>
+                    <div class="text-left"><strong>Status</strong></div>
                 </div>
                 @foreach($callbackRequests as $callback)
                 <a href="{{ route('admin.inquiry.viewCallback', $callback->id) }}" class="hover:bg-gray-50">
@@ -85,7 +74,11 @@
                         <div class="text-left">{{ $callback->name }}</div>
                         <div class="text-left">{{ $callback->phone }}</div>
                         <div class="text-left">{{ $callback->time_from }} - {{ $callback->time_to }}</div>
-                        <div class="text-left">{{ $callback->created_at }}</div>
+                        <div class="text-left font-bold @if($callback->status == 'Pending') text-blue-500 
+                        @elseif($callback->status == 'In Progress') text-yellow-500 
+                        @elseif($callback->status == 'Failed') text-red-500
+                        @elseif($callback->status == 'Completed') text-green-600 
+                        @endif"">{{ $callback->status}}</div>
                     </div>
                 </a>
                 @endforeach
@@ -96,22 +89,32 @@
             </div>
         </div>
     </div>
+
+    @if (session('success'))
+            <div class="bg-green-500 text-white p-4 rounded-md mb-4 m-auto my-10">
+                <span class="font-bold cursor-pointer float-right text-xl leading-none " onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ session('success') }}
+            </div>
+            @endif
+
+            @if (session('error'))
+            <div class="bg-red-500 text-white p-4 rounded-md mb-4 sm:max-w-4xl my-10">
+                <span class="font-bold cursor-pointer float-right text-xl leading-none" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ session('error') }}
+            </div>
+            @endif
+
     <footer class="bg-[#543310] text-white mt-10">
     <div class="container mx-auto py-6 px-4 flex flex-col md:flex-row justify-between items-center">
         <!-- Social Media Links -->
         <div class="flex justify-center md:justify-start mb-4 md:mb-0">
-            <a href="#" class="text-white mx-2 hover:text-gray-400">
+            <a href="https://web.facebook.com/woodlak123" class="text-white mx-2 hover:text-gray-400">
                 <i class="bi bi-facebook text-xl"></i>
-            </a>
-            <a href="#" class="text-white mx-2 hover:text-gray-400">
-                <i class="bi bi-twitter text-xl"></i>
             </a>
             <a href="#" class="text-white mx-2 hover:text-gray-400">
                 <i class="bi bi-instagram text-xl"></i>
             </a>
-            <a href="https://web.facebook.com/woodlak123" class="text-white mx-2 hover:text-gray-400">
-                <i class="bi bi-linkedin text-xl"></i>
-            </a>
+          
         </div>
 
         <!-- Copyright -->

@@ -7,8 +7,10 @@ body {
     font-family: Arial, sans-serif;
     
     background-size: cover;
-    background-color: #c19a6b;
+    background-image: url(images/download\ \(1\).jpeg);
 }
+
+
 
 html::-webkit-scrollbar-track {
     background: transparent;
@@ -92,7 +94,7 @@ html::-webkit-scrollbar-track {
     align-items: center;
     min-height: 100vh;
     background-color: rgb(1, 14, 9);
-    background: url('WhatsApp\ Image\ 2024-09-08\ at\ 5.10.46\ PM.jpeg') no-repeat center center fixed;
+    background: url('images/download\ \(1\).jpeg') no-repeat center center fixed;
     padding: 20px;
 }
 
@@ -216,4 +218,14 @@ html::-webkit-scrollbar-track {
 
 .container .profileH p a:hover{
     text-decoration: underline;
+}
+
+table{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+table .table{
+    margin-top: 10px;
+    margin-bottom: 20px;
 }

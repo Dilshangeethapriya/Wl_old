@@ -83,6 +83,9 @@ $result = $conn->query($sql);
 <head>
     <title>Admin Panel - Bank Transfers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -129,8 +132,54 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
+<header class="bg-[#543310] h-20 fixed w-full top-0 mt-0">
+    <nav class="flex justify-between items-center w-[95%] mx-auto">
+        <div class="flex items-center gap-[1vw]">
+            <img class="w-16" src="../Logo.png" alt="Logo">
+            <h1 class="text-xl text-white font-sans"><b>WOODLAK</b></h1>
+            <p class="text-xl text-white font-sans">Admin</p>
+        </div>
+        <div class="lg:static absolute bg-[#543310] lg:min-h-fit min-h-[39vh] left-0 top-[9%] lg:w-auto w-full flex items-center px-5 justify-center lg:justify-start text-center lg:text-right xl:contents hidden lg:flex" id="content">
+            <ul class="flex lg:flex-row flex-col lg:gap-[4vw] gap-8">
+                <li>
+                    <a class="text-white hover:text-[#D0B8A8]" href="../../admin">Dashboard</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-[#D0B8A8]" href="../../product/product_detail.php">Products</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-[#D0B8A8]" href="../../orders/view_orders_Admin/OrderList.php">Orders</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-[#D0B8A8]" href="../../admin/inquiry">Inquiries</a>
+                </li>
+                <li>
+                    <a class="text-green-500  hover:text-[#D0B8A8]" href="">Bank Transfers</a>
+                </li>
+                <li>
+                    <a class="text-white hover:text-[#D0B8A8]" href="../../UserProfile/RegisteredUsers.php">Users</a>
+                </li>
+            </ul>
+        </div>
+       
+     
+        <div class="flex items-center gap-3">
+            <button class="bg-[#74512D] text-white px-5 py-2 rounded-full hover:text-[#D0B8A8]">Logout</button> 
+            <button onclick="responsive()"><i class="bi bi-list text-4xl lg:hidden text-white"></i></button>
+        </div>
+       
+    </nav>
+</header>
 
-<h1>Bank Transfers Management</h1>
+<script>
+    function responsive() {
+        var x = document.getElementById("content");
+        x.classList.toggle("hidden");
+    }
+</script>
+   
+
+<h1 class="text-3xl mt-32">Bank Transfers Management</h1>
 
 <table>
     <tr>

@@ -10,6 +10,6 @@
     <blockquote>
         {{ $reply }}
     </blockquote>
-    <p>Best regards,<br>Woodalak Customer Support Team</p>
+    <p>Best regards,<br>WOODLAK Customer Support Team</p>
 </body>
 </html>

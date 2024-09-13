@@ -30,9 +30,11 @@ Route::post('/inquiry/add', [InquiryController::class, 'addInquiry'])->name('add
 
 Route::post('/inquiry/callback-request', [InquiryController::class, 'addCallBackRequest'])->name('addCallBackRequest');
 
-Route::get('/my-php-page', function () {
-    return view('my-php-page');
-});
+
+
+// Route::get('/my-php-page', function () {
+//     return view('my-php-page');
+// });
 
 
 // ---- admin routes ----- 
@@ -48,6 +50,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/{ticketID}/reply', [InquiryController::class, 'reply'])->name('inquiry.reply');
 
         Route::get('/callback/{id}', [InquiryController::class, 'viewCallback'])->name('inquiry.viewCallback');
+        Route::put('/callback/{id}/status', [InquiryController::class, 'updateCallbackStatus'])->name('inquiry.callback.updateStatus');
         Route::delete('/callback/{id}/delete', [InquiryController::class, 'deleteCallbackRequest'])->name('inquiry.callback.delete');
     });
 });

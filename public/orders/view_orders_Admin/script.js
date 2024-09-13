@@ -1,19 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".input-group input");
-    const searchIcon = document.querySelector(".input-group img:nth-child(3)"); // Assuming the second image is the search icon
-    const clearIcon = document.querySelector(".input-group img:nth-child(2)"); // Assuming the first image is the cross icon
+    const searchIcon = document.querySelector(".input-group img:nth-child(3)"); // Assuming the search icon is the third image
+    const clearIcon = document.querySelector(".input-group img:nth-child(2)"); // Assuming the clear icon is the second image
 
-    function fetchOrders(orderID = "") {
-        console.log("Fetching orders for order ID:", orderID); // Debugging
+    function fetchOrders(query = "") {
+        console.log("Fetching orders for query:", query); // Debugging
         const xhr = new XMLHttpRequest();
-        xhr.open(
-            "GET",
-            "fetch_orders.php?orderID=" +
-                encodeURIComponent(orderID) +
-                "&nocache=" +
-                new Date().getTime(),
-            true
-        );
+        let url = "fetch_orders.php?query=" + encodeURIComponent(query);
+
+        xhr.open("GET", url, true);
 
         xhr.onload = function () {
             if (this.status === 200) {
@@ -34,12 +29,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         row.innerHTML = `
                             <td><a href="customer_details.php?orderID=${
                                 order.orderID
-                            }<td>">${order.orderID}</a></td>
+                            }">${order.orderID}</a></td>
                             <td>${order.customerID}</td>
                             <td>${order.total}</td>
                             <td>${order.orderDate}</td>
                             <td>${order.paymentMethod}</td>
-                            <td>sdasd</td>
                             <td id="order-status-${order.orderID}">${
                             order.orderStatus
                         }</td>
@@ -118,9 +112,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Event listener for search icon click
     searchIcon.addEventListener("click", function () {
-        const customerID = searchInput.value.trim();
-        console.log("Search icon clicked, Customer ID:", customerID); // Debugging
-        fetchOrders(customerID); // Fetch orders filtered by the Customer ID
+        const query = searchInput.value.trim();
+        console.log("Search icon clicked, Query:", query); // Debugging
+        fetchOrders(query); // Fetch orders filtered by the query
     });
 
     // Event listener for clear icon click

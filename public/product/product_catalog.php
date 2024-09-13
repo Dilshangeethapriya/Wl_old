@@ -5,17 +5,19 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Product Catalog</title>
-        <meta charset="utf-8">
-		<meta name="veiwport" content="width=device-width,intial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    </head>
+<head>
+    <title>Product Catalog</title>
+    <meta charset="utf-8">
+	<meta name="veiwport" content="width=device-width,intial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
     <body>
-    <header class="bg-[#543310] h-20">
+        <!-- Parent container for the page content and footer -->
+<div class="min-h-screen flex flex-col justify-between">
+
+<header class="bg-[#543310] h-20">
     <nav class="flex justify-between items-center w-[95%] mx-auto">
         <div class="flex items-center gap-[1vw]">
             <img class="w-16" src="Logo.png" alt="Logo">
@@ -24,19 +26,19 @@ session_start();
         <div class="lg:static absolute bg-[#543310] lg:min-h-fit min-h-[39vh] left-0 top-[9%] lg:w-auto w-full flex items-center px-5 justify-center lg:justify-start text-center lg:text-right xl:contents hidden lg:flex" id="content">
             <ul class="flex lg:flex-row flex-col lg:gap-[4vw] gap-8">
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] p-2 underline hover:underline-offset-4" href="../">Home</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="../">Home</a>
                 </li>
                 <li>
                     <a class="text-white hover:text-[#D0B8A8]" href="../inquiry">Contact Us</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8]" href="/path/to/about_us.php">About Us</a>
+                    <a class="text-white hover:text-[#D0B8A8]" href="#">About Us</a>
                 </li>
                 <li>
                     <a class="text-white hover:text-[#D0B8A8]" href="">Products</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8]" href="/path/to/orders.php">Orders</a>
+                    <a class="text-white hover:text-[#D0B8A8]" href="#">Orders</a>
                 </li>
             </ul>
         </div>
@@ -75,7 +77,7 @@ session_start();
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="product bg-white p-6 rounded-lg shadow-lg">';
                     echo '<a href="view_product.php?PRODUCTC=' . $row['productID'] . '"><img src="' . $row['image'] . '" alt="' . $row['productName'] . '" class="w-full h-48 object-cover mb-4 rounded-lg"></a>';
-                    echo '<h2 class="text-2xl font-bold mb-2 text-center">' . $row['productName'] . '</h2>';
+                    echo '<a href="view_product.php?PRODUCTC=' . $row['productID'] . '"><h2 class="text-3xl font-bold mb-2 2xl:mb-9 text-center hover:text-[#5a2b09]">' . $row['productName'] . '</h2></a>';
                     echo '<p class="price text-xl mb-4 text-center">Rs.' . $row['price'] . '</p>';
                     echo '<form method="POST" action="add_to_cart.php">';
                     echo '<input type="hidden" name="productID" value="' . $row['productID'] . '">';
@@ -107,5 +109,40 @@ session_start();
                 }
             }
         </script>
+<div class="flex-grow">
+    <!-- Page content -->
+</div>
+
+<!-- Footer -->
+<footer class="bg-[#543310] text-white mt-10">
+    <div class="container mx-auto py-6 px-4 flex flex-col md:flex-row justify-between items-center">
+        <!-- Social Media Links -->
+        <div class="flex justify-center md:justify-start mb-4 md:mb-0">
+            <a href="https://web.facebook.com/woodlak123" class="text-white mx-2 hover:text-gray-400">
+                <i class="bi bi-facebook text-xl"></i>
+            </a>
+            <a href="#" class="text-white mx-2 hover:text-gray-400">
+                <i class="bi bi-instagram text-xl"></i>
+            </a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center md:text-left">
+            <p>&copy; 2024 WOODLAK. All rights reserved.</p>
+        </div>
+
+        <!-- Back to Top Button -->
+        <div class="mt-4 md:mt-0">
+            <a href="#" class="text-white hover:text-gray-400">
+                <i class="bi bi-arrow-up-circle-fill text-2xl"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+</div>
+
+   
+        
+
     </body>
 </html>

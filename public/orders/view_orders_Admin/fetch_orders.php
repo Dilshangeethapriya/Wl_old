@@ -5,15 +5,19 @@ if (!$conn) {
     die("No DB connection");
 }
 
-$orderID = isset($_GET['orderID']) ? $_GET['orderID'] : '';
+$query = isset($_GET['query']) ? $_GET['query'] : '';
 
-if ($orderID) {
+if (is_numeric($query)) {
+    // Search by Order ID
     $sql = "SELECT * FROM orders WHERE orderID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $orderID);
+    $stmt->bind_param("s", $query);
 } else {
-    $sql = "SELECT * FROM orders";
+    // Search by Customer Name
+    $sql = "SELECT * FROM orders WHERE name like ?";
     $stmt = $conn->prepare($sql);
+    $searchTerm = '%' . $query . '%';
+    $stmt->bind_param("s", $searchTerm);
 }
 
 $stmt->execute();

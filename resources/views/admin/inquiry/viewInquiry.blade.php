@@ -16,7 +16,7 @@
 <body class="font-sans text-gray-900 antialiased"
       style="background-image: url('{{ asset('storage/bg1.jpg') }}'); background-size: cover;">
 
-    <div class="flex items-center justify-center min-h-screen">
+    <div class="flex items-center justify-center min-h-screen my-20">
         <!-- Inquiry Container -->
         <div class="w-full max-w-4xl bg-translucent shadow-md rounded-lg overflow-hidden">
             <!-- Header with Back Button -->
@@ -48,12 +48,13 @@
                         <p><strong>Updated At:</strong> {{$inquiry->updated_at}}</p>
                     </div>
                 </div>
+               
+                <div class="mb-6 p-4 bg-transparent border border-gray-400 rounded-lg shadow-sm">
                 <div class="mb-6 text-center">
                     <h3 class="text-xl font-semibold">{{$inquiry->subject}}</h3>
                 </div>
-                <div class="mb-6">
-                    <p><strong>Message:</strong> {{$inquiry->ticketText}}</p>
-                </div>
+                     <p class="text-gray-600">{{ $inquiry->ticketText }}</p>
+                 </div>
                 <div class="mb-6">
                     <span class="inline-block px-4 py-2 text-lg font-semibold text-white
                         @if($inquiry->ticketStatus == 'New') bg-blue-600 
@@ -78,18 +79,18 @@
                 </div>
 
                 <!-- Footer (Buttons) -->
-                <div class="bg-gray-100 p-6 mt-5 flex justify-between items-end">
+                <div class="bg-transparent p-6 mt-5 flex justify-between items-end">
                     <div>
                         <form method="POST" action="{{ route('admin.inquiry.updateStatus', $inquiry->ticketID) }}">
                             @csrf
                             @method('PUT')
-                            <label for="status" class="block text-gray-700">Change Inquiry Status</label>
+                            <label for="status" class="block text-gray-700 ">Change Status</label>
                             <select name="status" id="status" class="block w-full mt-1 rounded border-gray-300 text-gray-700 shadow-sm focus:ring-indigo-500">
                                 <option value="New" {{ $inquiry->ticketStatus == 'New' ? 'selected' : '' }}>New</option>
                                 <option value="In Progress" {{ $inquiry->ticketStatus == 'In Progress' ? 'selected' : '' }}>In Progress</option>
                                 <option value="Closed" {{ $inquiry->ticketStatus == 'Closed' ? 'selected' : '' }}>Closed</option>
                             </select>
-                            <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring ring-indigo-300">
+                            <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:ring ring-indigo-300">
                                 Update Status
                             </button>
                         </form>

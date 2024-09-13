@@ -74,10 +74,9 @@
     
     <x-navbar/>
    
-    <
+    
 
-
-        <section class="feature-section text-center mt-20">
+        <section class="feature-section text-center mt-80">
             <h2 class="text-4xl font-semibold header-title mb-5">Why Choose Our Neem Combs?</h2>
             <div class="flex justify-center gap-8">
                 <div class="w-[30%]">

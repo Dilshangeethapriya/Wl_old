@@ -8,6 +8,9 @@
     <title>ORDER LIST</title>
     <link rel="stylesheet" type="text/css" href="style3.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script> <!-- Include html2pdf library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
 
         #customers_table {
@@ -27,10 +30,11 @@
 </head>
 
 <body>
-    
-    <main class="table" id="customers_table">
+
+
+    <main class="table mt-20" id="customers_table">
         <section class="table__header">
-            <h1>ORDER LIST</h1>
+            <h1 class="text-2xl">ORDER LIST</h1>
             <div class="input-group">
                 <input type="search" id="customer-search" placeholder="Search Order ID or Customer Name...">
                 <img src="cross1.jpg" alt="" id="clear-search">
@@ -54,7 +58,6 @@
                         <th>Amount </th>
                         <th>Order Date </th>
                         <th>Payment Method </th>
-                        <th>Payment Status</th>
                         <th>Updated Status </th>
                         <th>Select Order Status </th>
                     </tr>

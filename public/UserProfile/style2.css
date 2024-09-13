@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #c19a6b;
+    background-image: url(images/download\ \(1\).jpeg);
     background-size: cover;
 }
 
@@ -65,6 +65,7 @@ html::-webkit-scrollbar-track {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .btn:hover {
@@ -115,11 +116,11 @@ html::-webkit-scrollbar-track {
     padding-right: 300px;
     color: #550f0a;
     width: auto;
+    margin-bottom: 10px;
 }
 
-
 .profile form img {
-    height: 100px; 
+    height: 100%; 
     width: 100px; 
     border-radius: 50%;
     object-fit: cover;
@@ -144,6 +145,7 @@ html::-webkit-scrollbar-track {
     display: block;
     margin-top: 15px;
     font-size: 17px;
+    width: 100%;
     color: var(--black);
 }
 
@@ -264,6 +266,7 @@ html::-webkit-scrollbar-track {
     object-fit: cover;
     margin-bottom: 5px;
     box-shadow: rgb(71, 39, 39);
+
 }
 
 .container .profileH h3 {

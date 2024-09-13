@@ -33,7 +33,7 @@ class inquiryController extends Controller
                 }}],
              'phone' => 'required|min:10',
              'subject' => 'required|max:100',
-             'message' => 'required|max:1000',
+             'message' => 'required|max:3000',
         ]);
 
         $inquiry = new Tickets;
@@ -170,5 +170,24 @@ public function adminViewInquiriesAndCallbacks()
         return redirect()->route('admin.inquiry.index')->with('success', 'Callback request deleted successfully.');
     }
     
+    public function updateCallbackStatus(Request $request, $id)
+   {
+    // Validate the status input
+    $request->validate([
+        'status' => 'required|in:Pending,In Progress,Failed,Completed',
+    ]);
+
+    // Find the callback request by its ID
+    $callback = CallbackRequest::findOrFail($id);
+
+    // Update the status
+    $callback->status = $request->input('status');
+    $callback->updated_at = now();
+    $callback->save();
+
+    // Redirect back with a success message
+    return redirect()->route('admin.inquiry.viewCallback', $id)->with('success', 'Callback request status updated successfully!');
+   }
+
 }
 

@@ -15,5 +15,6 @@ class CallbackRequest extends Model
         'phone',
         'time_from',
         'time_to',
+        'status',
     ];
 }
