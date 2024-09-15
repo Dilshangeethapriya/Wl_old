@@ -45,19 +45,19 @@ mysqli_close($conn);
         <div class="lg:static absolute bg-[#543310] lg:min-h-fit min-h-[39vh] left-0 top-[9%] lg:w-auto w-full flex items-center px-5 justify-center lg:justify-start text-center lg:text-right xl:contents hidden lg:flex" id="content">
             <ul class="flex lg:flex-row flex-col lg:gap-[4vw] gap-8">
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] p-2 underline hover:underline-offset-4" href="../">Home</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="../">Home</a>
                 </li>
                 <li>
                     <a class="text-white hover:text-[#D0B8A8]" href="../inquiry">Contact Us</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8]" href="/path/to/about_us.php">About Us</a>
+                    <a class="text-white hover:text-[#D0B8A8]" href="../aboutUS/About_Us.php">About Us</a>
                 </li>
                 <li>
                     <a class="text-white hover:text-[#D0B8A8]" href="product_catalog.php">Products</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8]" href="/path/to/orders.php">Orders</a>
+                    <a class="text-white hover:text-[#D0B8A8]" href="#">Orders</a>
                 </li>
             </ul>
         </div>
@@ -68,25 +68,25 @@ mysqli_close($conn);
         <div class="flex items-center gap-3">
             <span class="mr-4 text-lg"><?php echo $user_name; ?></span>
             <button class="bg-[#74512D] text-white px-5 py-2 rounded-full hover:text-[#D0B8A8]" onclick="location.href='/dashboard/woodlak/public/Userprofile/profile.php'">Profile</button> 
-            <button onclick="responsive()"><i class="bi bi-list text-4xl lg:hidden text-white"></i></button>
+            <button onclick="responsive()"><i class="bi bi-list text-4xl lg:hidden text-white "></i></button>
         </div>
         <?php } else { ?>
         <div class="flex items-center gap-3">
             <button class="bg-[#74512D] text-white px-5 py-2 rounded-full hover:text-[#D0B8A8]" onclick="location.href='/dashboard/woodlak/public/Userprofile/register.php'">Register</button>
             <button class="bg-[#74512D] text-white px-5 py-2 rounded-full hover:text-[#D0B8A8]" onclick="location.href='/dashboard/woodlak/public/Userprofile/login.php'">Login</button>
-            <button onclick="responsive()"><i class="bi bi-list text-4xl lg:hidden text-white"></i></button>
+            <button onclick="responsive()"><i class="bi bi-list text-4xl lg:hidden text-white "></i></button>
         </div>
         <?php } ?>
     </nav>
 </header>
-        <div class="container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 ">
 
         <div class="left_side">
             <?php
             echo "<img src=". $MyProductImage." alt=". $MyProductName." class='display mt-4' style='margin-left:15%;'>";
             ?>
 
-        </div>
+   
         </div>
 
         <div class="right_side">
@@ -117,17 +117,14 @@ mysqli_close($conn);
         </div> 
         </div>
         <a href="shopping_cart.php" class="shoppingCart bg-[#78350f] hover:bg-white text-white hover:text-[#78350f] fixed bottom-3 right-5  p-3 rounded-full shadow-lg">
-        <i class="bi bi-cart4 text-2xl"></i>
+        <i class="bi bi-cart4 text-4xl"></i>
         </a>
         <script>
-            function toggle() {
-                var x = document.getElementById("content");
-                if (x.style.display === "block") {
-                    x.style.display = "none";
-                } else {
-                    x.style.display = "block";
-                }
-            }
+      function responsive() {
+        var x = document.getElementById("content");
+        x.classList.toggle("hidden");
+    }
+
         </script>
     </body>
 </html>

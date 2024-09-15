@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        /* Custom class for translucent background */
+        
         .bg-translucent {
-            background-color: rgba(255, 255, 255, 0.7); /* white background with 80% opacity */
+            background-color: rgba(255, 255, 255, 0.7); 
         }
     </style>
 </head>
@@ -23,7 +23,6 @@
     <h2 class="text-center text-2xl font-semibold mb-10">GET IN TOUCH</h2>
     <div class="flex justify-around text-center ">
 
-        <!-- Address Section -->
         <div class="flex flex-col items-center">
             <div class=" text-teal-800 p-4 rounded-full mb-5">
             <img class="w-14" src="{{ asset('storage/circle.png') }}" alt="phone">
@@ -33,7 +32,7 @@
 
         </div>
 
-        <!-- Phone Section -->
+       
         <div class="flex flex-col items-center">
             <div class=" text-teal-800 p-4 mb-5">
             <img class="w-14" src="{{ asset('storage/phone-call.png') }}" alt="phone">
@@ -42,7 +41,6 @@
             <p>077 379 3553</p>
         </div>
 
-        <!-- Email Section -->
         <div class="flex flex-col items-center">
             <div class=" text-teal-800 p-4  mb-5">
             <img class="w-14" src="{{ asset('storage/email.png') }}" alt="phone">
@@ -141,7 +139,6 @@
             document.getElementById(tabName).classList.remove("hidden");
         }
 
-        // Initially show the Inquiry form
         document.getElementById("inquiry").classList.remove("hidden");
     </script>
     <script type="text/javascript">

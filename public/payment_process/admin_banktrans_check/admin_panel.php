@@ -1,13 +1,14 @@
+
 <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "WoodLak";
 
-// Create connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -16,7 +17,6 @@ if (isset($_GET['id'])) {
     $transferID = intval($_GET['id']);
     $action = $_GET['action'];
 
-    // Get the OrderID associated with this transfer
     $sql = "SELECT OrderID FROM BankTransfers WHERE transferID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $transferID);
@@ -26,7 +26,6 @@ if (isset($_GET['id'])) {
     $stmt->close();
 
     if ($action == 'delete') {
-        // Update the orderStatus to 'cancelled' in the Orders table
         if ($orderID) {
             $sql = "UPDATE Orders SET orderStatus = 'cancelled' WHERE orderID = ?";
             $stmt = $conn->prepare($sql);
@@ -35,7 +34,6 @@ if (isset($_GET['id'])) {
             $stmt->close();
         }
 
-        // Delete the BankTransfer record
         $sql = "DELETE FROM BankTransfers WHERE transferID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $transferID);
@@ -48,14 +46,12 @@ if (isset($_GET['id'])) {
 
         $stmt->close();
     } elseif ($action == 'confirm') {
-        // Update the checkStatus to 'Confirmed' in the BankTransfers table
         $sql = "UPDATE BankTransfers SET checkStatus = 'Confirmed' WHERE transferID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $transferID);
         $stmt->execute();
         $stmt->close();
 
-        // Update the orderStatus to 'Confirmed' in the Orders table
         if ($orderID) {
             $sql = "UPDATE Orders SET orderStatus = 'Confirmed' WHERE orderID = ?";
             $stmt = $conn->prepare($sql);
@@ -69,7 +65,6 @@ if (isset($_GET['id'])) {
 
     $conn->close();
 
-    // Redirect back to the admin panel
     header("Location: admin_panel.php");
     exit();
 }
@@ -77,10 +72,11 @@ if (isset($_GET['id'])) {
 $sql = "SELECT transferID, depositAmount, accountNumber, accountHolder, transactionID, receiptFile, OrderID, checkStatus FROM BankTransfers";
 $result = $conn->query($sql);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Admin Panel - Bank Transfers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Bank Transfers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -91,11 +87,11 @@ $result = $conn->query($sql);
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #A67B5B;
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff;
             padding: 20px 0;
         }
         table {
@@ -104,16 +100,20 @@ $result = $conn->query($sql);
             margin: 20px auto;
             border-collapse: collapse;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            background-color: #f4f4f4;
         }
         th, td {
             padding: 15px;
             text-align: left;
-            border: 1px solid #ddd;
+            border: 1px solid #b87333;
         }
         th {
-            background-color: #333;
+            background-color: #8C4D29;
             color: #fff;
+        }
+        td {
+            background-color: #D9B08C; 
+            color: #333;
         }
         td a {
             text-decoration: none;
@@ -122,6 +122,9 @@ $result = $conn->query($sql);
         }
         td a:hover {
             text-decoration: underline;
+        }
+        tr:hover {
+            background-color: #C9A068; 
         }
         @media (max-width: 768px) {
             table, th, td {
@@ -132,7 +135,7 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
-<header class="bg-[#543310] h-20 fixed w-full top-0 mt-0">
+    <header class="bg-[#543310] h-20 fixed w-full top-0 mt-0">
     <nav class="flex justify-between items-center w-[95%] mx-auto">
         <div class="flex items-center gap-[1vw]">
             <img class="w-16" src="../Logo.png" alt="Logo">
@@ -154,7 +157,7 @@ $result = $conn->query($sql);
                     <a class="text-white hover:text-[#D0B8A8]" href="../../admin/inquiry">Inquiries</a>
                 </li>
                 <li>
-                    <a class="text-green-500  hover:text-[#D0B8A8]" href="">Bank Transfers</a>
+                    <a class="text-white  hover:text-[#D0B8A8]" href="">Bank Transfers</a>
                 </li>
                 <li>
                     <a class="text-white hover:text-[#D0B8A8]" href="../../UserProfile/RegisteredUsers.php">Users</a>
@@ -171,15 +174,7 @@ $result = $conn->query($sql);
     </nav>
 </header>
 
-<script>
-    function responsive() {
-        var x = document.getElementById("content");
-        x.classList.toggle("hidden");
-    }
-</script>
-   
-
-<h1 class="text-3xl mt-32">Bank Transfers Management</h1>
+<h1 class="mt-32 text-4xl">Bank Transfers Management</h1>
 
 <table>
     <tr>

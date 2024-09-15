@@ -9,7 +9,7 @@
     <style>
         
         .bg-translucent {
-            background-color: rgba(255, 255, 255, 0.7); /* white background with 80% opacity */
+            background-color: rgba(255, 255, 255, 0.7); 
         }
         body {
                 background-image: url('wallPaper_02.png');
@@ -82,17 +82,17 @@
                 <div class="w-[30%]">
                 <i class="bi bi-flower3 text-5xl mb-3"></i>
                     <h3 class="text-2xl font-semibold subheading">Natural Benefits</h3>
-                    <p>Neem has natural antibacterial properties that promote a healthy scalp and reduce dandruff.</p>
+                    <p class="text-white">Neem has natural antibacterial properties that promote a healthy scalp and reduce dandruff.</p>
                 </div>
                 <div class="w-[30%]">
                     <i class="bi bi-gem text-5xl mb-3"></i>
                     <h3 class="text-2xl font-semibold subheading">Durability</h3>
-                    <p>Our combs are strong and long-lasting, crafted from premium neem wood for everyday use.</p>
+                    <p class="text-white">Our combs are strong and long-lasting, crafted from premium neem wood for everyday use.</p>
                 </div>
                 <div class="w-[30%]">
                     <i class="bi bi-recycle text-5xl mb-3"></i>
                     <h3 class="text-2xl font-semibold subheading">Eco-Friendly</h3>
-                    <p>Our combs are 100% biodegradable, making them a sustainable choice for your daily hair care routine.</p>
+                    <p class="text-white">Our combs are 100% biodegradable, making them a sustainable choice for your daily hair care routine.</p>
                 </div>
             </div>
         </section>

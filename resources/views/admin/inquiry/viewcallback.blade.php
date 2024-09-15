@@ -6,27 +6,26 @@
     <title>Admin - View Callback Request</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        /* Custom class for translucent background */
+       
         .bg-translucent {
-            background-color: rgba(255, 255, 255, 0.8); /* white background with 80% opacity */
+            background-color: rgba(255, 255, 255, 0.8); 
         }
-
-           /* Enabled button style */
+   
            .btn-enabled {
-            background-color:  #dc2626; /* red background */
-            border-color:  #dc2626; /* red border */
-            color: #ffffff; /* white text */
+            background-color:  #dc2626; 
+            border-color:  #dc2626;
+            color: #ffffff; 
         }
         .btn-enabled:hover {
-            background-color: #f87171; /* dark red on hover */
-            border-color:  #f87171; /* dark red border on hover */
+            background-color: #f87171; 
+            border-color:  #f87171; 
         }
-        /* Disabled button style */
+       
         .btn-disabled {
-            background-color: #d1d5db; /* light gray background */
-            border-color: #d1d5db; /* light gray border */
-            color: #6b7280; /* gray text */
-            cursor: not-allowed; /* not-allowed cursor */
+            background-color: #d1d5db; 
+            border-color: #d1d5db; 
+            color: #6b7280; 
+            cursor: not-allowed; 
         }
     </style>
 </head>
@@ -35,7 +34,7 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
         <div class="relative shadow-lg rounded-lg overflow-hidden">
             <div class="bg-orange-800 text-white px-6 py-4 relative">
-                <!-- Back Button at the top-left corner -->
+               
                 <a href="{{ route('admin.inquiry.index') }}" 
                    class="absolute top-4 left-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md text-white hover:scale-105 focus:outline-none">
                    <img src="{{ asset('storage/arrow.png') }}" alt="Back" class="w-6 h-6 mr-2">
@@ -75,12 +74,12 @@
             </div>
             
             <div class="px-6 py-4 flex items-center bg-white border-t space-x-4">
-                <!-- Update Status Form -->
+                
                 <form method="POST" action="{{ route('admin.inquiry.callback.updateStatus', $callback->id) }}" class="flex flex-1 space-x-4 items-center">
                     @csrf
                     @method('PUT')
 
-                    <!-- Dropdown to select status -->
+                    
                     <div class="flex-1">
                         <select id="status" name="status" class="block w-full mt-1 rounded-md shadow-sm border-gray-300 focus:ring focus:ring-opacity-50">
                             <option value="Pending" {{ $callback->status == 'Pending' ? 'selected' : '' }}>Pending</option>
@@ -90,13 +89,13 @@
                         </select>
                     </div>
 
-                    <!-- Update Status button -->
+                   
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:ring ring-blue-300">
                         Update Status
                     </button>
                 </form>
 
-                <!-- Delete Request Form -->
+               
                 <form method="POST" action="{{ route('admin.inquiry.callback.delete', $callback->id) }}" class="flex-shrink-0">
                     @csrf
                     @method('DELETE')

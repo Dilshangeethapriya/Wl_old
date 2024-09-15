@@ -55,7 +55,7 @@
                     <a class="text-white hover:text-[#D0B8A8]" href="../payment_process/admin_banktrans_check/admin_panel.php">Bank Transfers</a>
                 </li>
                 <li>
-                    <a class="text-green-500 hover:text-[#D0B8A8]" href="../UserProfile/RegisteredUsers.php">Users</a>
+                    <a class="text-white hover:text-[#D0B8A8]" href="../UserProfile/RegisteredUsers.php">Users</a>
                 </li>
             </ul>
         </div>
@@ -76,7 +76,7 @@
     }
 </script>
 
-<h1 class="Users text-center text-3xl mt-32 mb-10" >Registered Users</h1>
+<h1 class="Users text-white text-center text-3xl mt-32 mb-10" >Registered Users</h1>
 <style>
      
         .input-roup {

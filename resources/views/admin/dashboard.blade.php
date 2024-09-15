@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        /* Custom class for translucent background */
         .bg-translucent {
-            background-color: rgba(255, 255, 255, 0.7); /* white background with 70% opacity */
+            background-color: rgba(255, 255, 255, 0.7); 
         }
     </style>
 </head>
@@ -24,30 +23,30 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
 
-            <!-- Products Count -->
+           
             <div class="bg-gradient-to-r  from-green-600 to-green-400 p-6 rounded-lg shadow-lg text-white">
                 <h3 class="text-2xl font-semibold mb-3">Products</h3>
                 <p class="text-lg">Total Products: <span class="font-bold">{{ $productsCount }}</span></p>
             </div>
 
-            <!-- Reviews Count -->
+            
             <div class="bg-gradient-to-r  from-green-600 to-green-400 p-6 rounded-lg shadow-lg text-white">
                 <h3 class="text-2xl font-semibold mb-3">Reviews</h3>
                 <p class="text-lg">Total Reviews: <span class="font-bold">{{ $reviewsCount }}</span></p>
             </div>
 
-            <!-- Customers Count -->
+           
             <div class="bg-gradient-to-r  from-green-600 to-green-400 p-6 rounded-lg shadow-lg text-white">
                 <h3 class="text-2xl font-semibold mb-3">Customers</h3>
                 <p class="text-lg">Total Customers: <span class="font-bold">{{ $customersCount }}</span></p>
             </div>
 
-            <!-- Orders Count -->
+          
             <div class="bg-gradient-to-r  from-green-600 to-green-400 p-6 rounded-lg shadow-lg text-white">
                 <h3 class="text-2xl font-semibold mb-3">Orders</h3>
                 <p class="text-lg">Total Orders: <span class="font-bold">{{ $orderCount }}</span></p>
             </div>
-            <!-- Inquiries Count -->
+
             <div class="bg-gradient-to-r  from-green-600 to-green-400 p-6 rounded-lg shadow-lg text-white">
                 <h3 class="text-2xl font-semibold mb-3">Inquiries</h3>
                 <p class="text-lg">Total Inquiries: <span class="font-bold">{{ $inquiriesCount }}</span></p>

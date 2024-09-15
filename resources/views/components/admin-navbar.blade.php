@@ -8,22 +8,22 @@
         <div class="lg:static absolute bg-[#543310] lg:min-h-fit min-h-[39vh] left-0 top-[9%] lg:w-auto w-full flex items-center px-5 justify-center lg:justify-start text-center lg:text-right xl:contents hidden lg:flex" id="content">
             <ul class="flex lg:flex-row flex-col lg:gap-[4vw] gap-8">
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] {{ Request::routeIs('admin.dashboard') ? 'text-green-500' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] {{ Request::is('product/product_detail.php') ? 'text-green-500' : '' }}" href="{{ asset('product/product_detail.php') }}">Products</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="{{ asset('product/product_detail.php') }}">Products</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] {{ Request::is('orders/view_orders_Admin/OrderList.php') ? 'text-green-500' : '' }}" href="{{ asset('orders/view_orders_Admin/OrderList.php') }}">Orders</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="{{ asset('orders/view_orders_Admin/OrderList.php') }}">Orders</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] {{ Request::routeIs('admin.inquiry.index') ? 'text-green-500' : '' }}" href="{{ route('admin.inquiry.index') }}">Inquiries</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="{{ route('admin.inquiry.index') }}">Inquiries</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] {{ Request::is('payment_process/admin_banktrans_check/admin_panel.php') ? 'text-green-500' : '' }}" href="{{ asset('payment_process/admin_banktrans_check/admin_panel.php') }}">Bank Transfers</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="{{ asset('payment_process/admin_banktrans_check/admin_panel.php') }}">Bank Transfers</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8] {{ Request::is('UserProfile/RegisteredUsers.php') ? 'text-green-500' : '' }}" href="{{ asset('UserProfile/RegisteredUsers.php') }}">Users</a>
+                    <a class="text-white hover:text-[#D0B8A8] " href="{{ asset('UserProfile/RegisteredUsers.php') }}">Users</a>
                 </li>
             </ul>
         </div>

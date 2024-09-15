@@ -13,7 +13,7 @@
                     <a class="text-white hover:text-[#D0B8A8]" href="{{route('inquiry')}}">Contact Us</a>
                 </li>
                 <li>
-                    <a class="text-white hover:text-[#D0B8A8]" href="#">About Us</a>
+                    <a class="text-white hover:text-[#D0B8A8]" href="{{asset('aboutUs/About_Us.php')}}">About Us</a>
                 </li>
                 <li>
                     <a class="text-white hover:text-[#D0B8A8]" href="{{ asset('product/product_catalog.php') }}">Products</a>

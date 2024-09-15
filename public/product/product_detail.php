@@ -50,7 +50,7 @@ if (isset($_GET['deleteProductId'])) {
         die("Error deleting data: " .  mysqli_connect_error());
     }
 
-    // Redirect back to add_product.php after deletion
+  
     header("Location: product_detail.php");
     exit();
 }
@@ -69,7 +69,7 @@ if (isset($_GET['deleteProductId'])) {
         <link rel="stylesheet" href="addProduct.css">
         <style>
             body{
-                background-image: url('wallPaper_02.png');
+                background : #c19a6b;
             }
 
         </style>
@@ -88,7 +88,7 @@ if (isset($_GET['deleteProductId'])) {
                     <a class="text-white hover:text-[#D0B8A8]" href="../admin">Dashboard</a>
                 </li>
                 <li>
-                    <a class="text-green-500  hover:text-[#D0B8A8]" href="">Products</a>
+                    <a class="text-white  hover:text-[#D0B8A8]" href="">Products</a>
                 </li>
                 <li>
                     <a class="text-white hover:text-[#D0B8A8]" href="../orders/view_orders_Admin/OrderList.php">Orders</a>
@@ -124,7 +124,7 @@ if (isset($_GET['deleteProductId'])) {
 
 
         <div>
-        <h1 class="text-center mt-32" style="font-size:50px"><b>WOODLAK Products</b></h1>
+        <h1 class="text-center mt-32" style="font-size:50px"><b>Products</b></h1>
         <button class="add_new" onclick="openForm()" style="background-color:#78350f">+ Add New</button>
         </div>
         <div class="form-popup" id="myForm">

@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        /* Custom class for translucent background */
+       
         .bg-translucent {
-            background-color: rgba(255, 255, 255, 0.7); /* white background with 80% opacity */
+            background-color: rgba(255, 255, 255, 0.7); 
         }
     </style>
 </head>
@@ -17,11 +17,11 @@
       style="background-image: url('{{ asset('storage/bg1.jpg') }}'); background-size: cover;">
 
     <div class="flex items-center justify-center min-h-screen my-20">
-        <!-- Inquiry Container -->
+        
         <div class="w-full max-w-4xl bg-translucent shadow-md rounded-lg overflow-hidden">
-            <!-- Header with Back Button -->
+           
             <div class=" text-white px-6 py-4 relative bg-orange-800">
-                <!-- Back Button at the top-left corner -->
+               
                 <a href="{{ route('admin.inquiry.index') }}" 
                    class="absolute top-4 left-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md text-white hover:scale-105 focus:outline-none">
                    <img src="{{ asset('storage/arrow.png') }}" alt="Back" class="w-6 h-6 mr-2">
@@ -29,7 +29,7 @@
                 <h3 class="text-2xl font-semibold text-center">Inquiry No: {{$inquiry->ticketID}}</h3>
             </div>
 
-            <!-- Content Area -->
+       
             <div class="p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div>
@@ -78,7 +78,7 @@
                     </form>
                 </div>
 
-                <!-- Footer (Buttons) -->
+               
                 <div class="bg-transparent p-6 mt-5 flex justify-between items-end">
                     <div>
                         <form method="POST" action="{{ route('admin.inquiry.updateStatus', $inquiry->ticketID) }}">

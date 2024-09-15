@@ -1,37 +1,34 @@
 <?php
 session_start();
 
-// Enable error reporting
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Generate a unique receipt number
+
 $receiptNumber = strtoupper(uniqid('REC-'));
 
-// Database connection
 $servername = "localhost";
 $username = "root";
-$password = ""; // your database password here
+$password = ""; 
 $dbname = "woodlak";
 
 try {
-    // Create a new PDO instance
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    // Set the PDO error mode to exception
+
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Assign values
     $totalAmount = isset($_SESSION['totalPrice']) ? $_SESSION['totalPrice'] : 0.00;
     $orderStatus = "Completed";
     $combPurchased = isset($_SESSION['productSequence']) ? $_SESSION['productSequence'] : 'No products purchased';
     $quantity = isset($_SESSION['totalQuantity']) ? $_SESSION['totalQuantity'] : 0;
 
-    // Check if essential session variables are set
+    
     if (!isset($_SESSION['name'], $_SESSION['phoneNumber'], $_SESSION['addressOne'], $_SESSION['addressTwo'], $_SESSION['addressThree'], $_SESSION['addressFour'], $_SESSION['email'])) {
         throw new Exception("Some required session variables are missing.");
     }
 
-    // Prepare SQL and bind parameters for Orders table
+  
     $stmt = $conn->prepare("INSERT INTO Orders (total, paymentMethod, orderStatus, name, phoneNumber, houseNo, streetName, city, postalCode, email, combPurchased, quantity) 
                             VALUES (:total, :paymentMethod, :orderStatus, :name, :phoneNumber, :houseNo, :streetName, :city, :postalCode, :email, :combPurchased, :quantity)");
     
@@ -48,22 +45,19 @@ try {
     $stmt->bindParam(':combPurchased', $combPurchased);
     $stmt->bindParam(':quantity', $quantity);
 
-    // Execute the statement for Orders table
+    
     $stmt->execute();
 
-    // Get the latest order ID
     $orderID = $conn->lastInsertId();
 
-    // Insert into BankTransfers table if payment method is Bank Transfer
     if ($_SESSION['paymentMethod'] == 'Bank Transfer') {
-        // Retrieve bank transfer details from session
         $depositAmount = $_SESSION['depositAmount'];
         $accountNumber = $_SESSION['accountNumber'];
         $accountHolder = $_SESSION['accountHolder'];
         $transactionID = $_SESSION['transactionID'];
         $receiptFile = $_SESSION['receiptFile'];
 
-        // Insert into BankTransfers table
+    
         $stmt = $conn->prepare("INSERT INTO BankTransfers (depositAmount, accountNumber, accountHolder, transactionID, receiptFile, OrderID) 
                                 VALUES (:depositAmount, :accountNumber, :accountHolder, :transactionID, :receiptFile, :orderID)");
         
@@ -74,11 +68,9 @@ try {
         $stmt->bindParam(':receiptFile', $receiptFile);
         $stmt->bindParam(':orderID', $orderID);
 
-        // Execute the statement for BankTransfers table
         $stmt->execute();
     }
 
-    // Close the connection
     $conn = null;
 } catch(PDOException $e) {
     echo "Database Error: " . $e->getMessage();
@@ -86,7 +78,6 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-// Check if everything was inserted correctly
 if (isset($orderID)) {
     $receiptMessage = "<h2>Payment Invoice</h2>
     <p>Thank you for your payment.</p>
@@ -97,7 +88,6 @@ if (isset($orderID)) {
     $receiptMessage = "<p>Error processing the order. Please try again later.</p>";
 }
 
-// Destroy the session
 session_destroy();
 ?>
 

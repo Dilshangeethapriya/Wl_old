@@ -14,18 +14,18 @@ $_SESSION['paymentMethod'] = "Cash On Delivery";
 
     <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> 
-    <!-- Tailwind CSS CDN -->
+   
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Inline CSS for Neem Wood Background Color -->
+ 
     <style>
         .bg-neemwood {
-            background-color: #a67b5b; /* Replace with your desired neem wood color */
+            background-color: #a67b5b; 
         }
     </style>
 </head>
 <body class="bg-neemwood min-h-screen">
 
-    <!-- Navbar Section -->
+    
     <header class="bg-[#543310] h-20">
     <nav class="flex justify-between items-center w-[95%] mx-auto">
         <div class="flex items-center gap-[1vw]">
@@ -70,36 +70,35 @@ $_SESSION['paymentMethod'] = "Cash On Delivery";
     </nav>
 </header>
 
-    <!-- Main Payment Section -->
+   
     <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-auto mt-10">
         <h2 class="text-xl md:text-2xl font-semibold text-center mb-6">Select Your Payment Method</h2>
         <div class="space-y-4">
-            <!-- Credit/Debit Card Option -->
+           
             <a href="credit-card.php" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                 <img src="pictures/creditcard.jpg" alt="Credit/Debit Card" class="w-12 h-12 object-contain mr-4">
                 <span class="text-gray-700 font-medium">Credit/Debit Card</span>
             </a>
 
-            <!-- Bank Transfer Option -->
+    
             <a href="bank-transfer.php" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                 <img src="pictures/banktrans.webp" alt="Bank Transfer" class="w-12 h-12 object-contain mr-4">
                 <span class="text-gray-700 font-medium">Bank Transfer</span>
             </a>
 
-            <!-- Cash on Delivery Option -->
+            
             <div id="cod-option" onclick="selectCOD()" class="flex items-center p-4 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200 transition">
                 <img src="pictures/cod.webp" alt="Cash on Delivery" class="w-12 h-12 object-contain mr-4">
                 <span class="text-gray-700 font-medium">Cash on Delivery</span>
             </div>
 
-            <!-- Koko (BNPL) Option -->
             <a href="koko.php" class="flex items-center p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
                 <img src="pictures/koko.png" alt="Koko (BNPL)" class="w-12 h-12 object-contain mr-4">
                 <span class="text-gray-700 font-medium">Koko (Buy Now Pay Later!)</span>
             </a>
         </div>
 
-        <!-- Confirm Button for COD -->
+  
         <div id="confirm-btn-container" class="mt-6 hidden">
             <button onclick="confirmCOD()" class="w-full py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
                 Confirm Cash on Delivery
@@ -107,7 +106,6 @@ $_SESSION['paymentMethod'] = "Cash On Delivery";
         </div>
     </div>
 
-    <!-- JavaScript for Navbar Responsiveness -->
     <script>
         function responsive() {
             var x = document.getElementById("content");
@@ -118,24 +116,23 @@ $_SESSION['paymentMethod'] = "Cash On Delivery";
             }
         }
 
-        // COD Payment Selection JavaScript
         function selectCOD() {
             const codOption = document.getElementById('cod-option');
             const confirmBtnContainer = document.getElementById('confirm-btn-container');
 
-            // Toggle selected state
+          
             codOption.classList.toggle('bg-green-100');
             codOption.classList.toggle('border');
             codOption.classList.toggle('border-green-500');
 
-            // Toggle confirm button visibility
+        
             confirmBtnContainer.classList.toggle('hidden');
         }
 
         function confirmCOD() {
-            // Handle COD confirmation logic here
+           
             window.location.href = 'payment_invoice.php';
-            // You can redirect to a confirmation page or perform other actions
+           
         }
 
 

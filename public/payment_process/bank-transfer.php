@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// Set payment method to "Bank Transfer"
+
 $_SESSION['paymentMethod'] = "Bank Transfer";
 
-// Ensure the session has the totalPrice set
+
 if (!isset($_SESSION['totalPrice'])) {
     echo "Error: Total price is not set in the session.";
     exit;
@@ -12,13 +12,13 @@ if (!isset($_SESSION['totalPrice'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
-        // Retrieve form data
+        
         $depositAmount = $_POST['depositAmount'];
         $accountNumber = $_POST['accountNumber'];
         $accountHolder = $_POST['accountHolder'];
         $transactionID = $_POST['transactionID'];
 
-        // Handle file upload
+        
         $receiptFile = null;
         if (isset($_FILES['receiptUpload']) && $_FILES['receiptUpload']['error'] == UPLOAD_ERR_OK) {
             $fileTmpPath = $_FILES['receiptUpload']['tmp_name'];
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $fileNameCmps = explode('.', $fileName);
             $fileExtension = strtolower(end($fileNameCmps));
 
-            // Define allowed file extensions
+            
             $allowedExts = array('jpg', 'jpeg', 'png', 'pdf');
             if (in_array($fileExtension, $allowedExts)) {
                 $uploadFileDir = './uploads/';
@@ -42,14 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
 
-        // Store form data in session variables
+        
         $_SESSION['depositAmount'] = $depositAmount;
         $_SESSION['accountNumber'] = $accountNumber;
         $_SESSION['accountHolder'] = $accountHolder;
         $_SESSION['transactionID'] = $transactionID;
         $_SESSION['receiptFile'] = $receiptFile;
 
-        // Redirect to payment_invoice.php
+        
         header("Location: payment_invoice.php");
         exit;
     } catch(Exception $e) {
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         .bg-neemwood {
-            background-color: #a67b5b; /* Neem wood color */
+            background-color: #a67b5b;
         }
     </style>
 </head>
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php } ?>
     </nav>
 </header>
-    <div class="max-w-md mx-auto bg-white p-2 rounded-lg shadow-md">
+    <div class="max-w-md mx-auto bg-white p-2 rounded-lg shadow-md mt-10">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Bank Transfer Instructions</h2>
         
         <p class="text-gray-700 mb-2">Account Number: <span class="font-semibold">8018887521</span></p>
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p class="text-red-600 font-bold mb-4">Please note! Only do the payment for your purchase.</p>
 
         <form action="" method="post" enctype="multipart/form-data">
-            <!-- Deposit amount is set automatically from the session variable -->
+            
             <input type="number" id="deposit-amount" name="depositAmount" 
                    value="<?php echo $_SESSION['totalPrice']; ?>" 
                    class="w-full mb-4 p-2 border border-gray-300 rounded" readonly required>

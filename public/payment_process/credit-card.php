@@ -250,7 +250,7 @@ $_SESSION['paymentMethod'] = "Credit Card";
 </head>
 <body class="bg-neemwood min-h-screen">
 
-    <!-- Navbar Section -->
+ 
     <header class="bg-[#543310] h-20">
     <nav class="flex justify-between items-center w-[95%] mx-auto">
         <div class="flex items-center gap-[1vw]">
@@ -295,7 +295,7 @@ $_SESSION['paymentMethod'] = "Credit Card";
     </nav>
 </header>
 
-    <!-- Main Credit Card Payment Section -->
+
     <div class="payment-page">
         <div class="payment-container">
             <div class="payment-header">
@@ -347,26 +347,26 @@ $_SESSION['paymentMethod'] = "Credit Card";
 
     <script>
         function formatCardNumber(input) {
-            const value = input.value.replace(/\D/g, ''); // Remove all non-digit characters
-            const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add space every 4 digits
+            const value = input.value.replace(/\D/g, ''); 
+            const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 '); 
             input.value = formattedValue;
         }
 
         function processPayment() {
-            const cardNumber = document.getElementById('card-number').value.replace(/\s+/g, ''); // Remove spaces
+            const cardNumber = document.getElementById('card-number').value.replace(/\s+/g, ''); 
 
-            // List of valid card numbers
+            
             const validCardNumbers = ['4242424242424242', '1212121212121212'];
 
-            // Show the loading overlay
+            
             document.getElementById('loading-overlay').style.display = 'flex';
 
             setTimeout(() => {
                 if (validCardNumbers.includes(cardNumber)) {
-                    window.location.href = "payment_invoice.php"; // Redirect to the invoice page
+                    window.location.href = "payment_invoice.php"; 
                 } else {
                     document.getElementById('loading-overlay').style.display = 'none';
-                    document.getElementById('error-message').style.display = 'block'; // Show error message
+                    document.getElementById('error-message').style.display = 'block'; 
                 }
             }, 2000); 
 

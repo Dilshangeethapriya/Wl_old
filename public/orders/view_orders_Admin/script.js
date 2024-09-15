@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".input-group input");
-    const searchIcon = document.querySelector(".input-group img:nth-child(3)"); // Assuming the search icon is the third image
-    const clearIcon = document.querySelector(".input-group img:nth-child(2)"); // Assuming the clear icon is the second image
+    const searchIcon = document.querySelector(".input-group img:nth-child(3)");
+    const clearIcon = document.querySelector(".input-group img:nth-child(2)");
 
     function fetchOrders(query = "") {
-        console.log("Fetching orders for query:", query); // Debugging
+        console.log("Fetching orders for query:", query);
         const xhr = new XMLHttpRequest();
         let url = "fetch_orders.php?query=" + encodeURIComponent(query);
 
@@ -13,13 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
         xhr.onload = function () {
             if (this.status === 200) {
                 const orders = JSON.parse(this.responseText);
-                console.log("Orders received:", orders); // Debugging
+                console.log("Orders received:", orders);
                 const tableBody = document.getElementById("order-table-body");
 
-                tableBody.innerHTML = ""; // Clear existing table data
+                tableBody.innerHTML = "";
 
                 if (orders.length === 0) {
-                    console.log("No orders found"); // Debugging
+                    console.log("No orders found");
                     tableBody.innerHTML =
                         '<tr><td colspan="8">No orders found.</td></tr>';
                 } else {
@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         tableBody.appendChild(row);
                     });
 
-                    // Add event listeners for status change
                     document
                         .querySelectorAll(".order-status")
                         .forEach((select) => {
@@ -110,20 +109,17 @@ document.addEventListener("DOMContentLoaded", function () {
         xhr.send();
     }
 
-    // Event listener for search icon click
     searchIcon.addEventListener("click", function () {
         const query = searchInput.value.trim();
-        console.log("Search icon clicked, Query:", query); // Debugging
-        fetchOrders(query); // Fetch orders filtered by the query
+        console.log("Search icon clicked, Query:", query);
+        fetchOrders(query);
     });
 
-    // Event listener for clear icon click
     clearIcon.addEventListener("click", function () {
-        searchInput.value = ""; // Clear the input field
-        console.log("Clear icon clicked"); // Debugging
-        fetchOrders(); // Fetch all orders again
+        searchInput.value = "";
+        console.log("Clear icon clicked");
+        fetchOrders();
     });
 
-    // Initial fetch to display all orders when the page loads
-    fetchOrders(); // Fetch all orders by default
+    fetchOrders();
 });

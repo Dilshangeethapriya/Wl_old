@@ -39,7 +39,7 @@
                 <div class="lg:static absolute bg-[#543310] lg:min-h-fit min-h-[39vh] left-0 top-[9%] lg:w-auto w-full flex items-center px-5 justify-center lg:justify-start items-center lg:items-start text-center lg:text-right xl:contents hidden" id="content" >
                     <ul class="flex lg:flex-row flex-col  lg:gap-[4vw] gap-8">
                         <li>
-                            <a class="text-white hover:text-[#D0B8A8] p-2 underline hover:underline-offset-4" href="../">Home</a>
+                            <a class="text-white hover:text-[#D0B8A8] " href="../">Home</a>
                         </li>
                         <li>
                             <a class="text-white hover:text-[#D0B8A8]" href="../inquiry">Contact Us</a>
